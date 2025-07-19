@@ -1,0 +1,37 @@
+{
+  "facebook": {
+    "scrollContainer": "html",
+    "lockStyle": "overflow-y: hidden;",
+    "unlockStyle": "overflow-y: scroll;"
+  },
+  "x": {
+    "scrollContainer": "html",
+    "lockStyle": "overflow-y: hidden;",
+    "unlockStyle": "overflow-y: scroll;"
+  },
+  "instagram": {
+    "scrollContainer": "body",
+    "lockStyle": "overflow-y: hidden;",
+    "unlockStyle": "overflow-y: scroll;"
+  },
+  "youtube": {
+    "scrollContainer": "body",
+    "lockStyle": "overflow-y: hidden;",
+    "unlockStyle": "overflow-y: scroll;"
+  },
+  "reddit": {
+    "scrollContainer": "body",
+    "lockStyle": "overflow-y: hidden;",
+    "unlockStyle": "overflow-y: scroll;"
+  },
+  "linkedin": {
+    "scrollContainer": "body",
+    "lockStyle": "overflow-y: hidden;",
+    "unlockStyle": "overflow-y: scroll;"
+  },
+  "pinterest": {
+    "scrollContainer": "body",
+    "lockStyle": "overflow-y: hidden;",
+    "unlockStyle": "overflow-y: scroll;"
+  }
+}

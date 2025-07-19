@@ -1,0 +1,70 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  /* Prevent background scroll when card is active */
+  overflow: hidden;
+  font-family: system-ui, sans-serif;
+}
+.blurred-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(8px);
+  z-index: 9998;
+}
+.unlock-card {
+  position: fixed;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  z-index: 9999;
+  width: 350px;
+  max-width: 90vw;
+  padding: 32px 24px 24px 24px;
+  text-align: center;
+  transition: opacity 0.3s;
+}
+.unlock-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: #222;
+}
+.unlock-desc {
+  color: #555;
+  margin-bottom: 24px;
+}
+.unlock-btn {
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 32px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-bottom: 12px;
+}
+.unlock-btn:hover {
+  background: #2563eb;
+}
+
+/* Optional: MCQ styles */
+#mcq-container {
+  margin-top: 18px;
+  text-align: left;
+}
+.mcq-question {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.mcq-options label {
+  display: block;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
