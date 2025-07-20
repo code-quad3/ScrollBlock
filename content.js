@@ -113,7 +113,7 @@ function injectUnlockCardOverlay() {
     .then(html => {
       const overlay = document.createElement('div');
       overlay.id = 'ext-unlock-overlay';
-      Object.assign(overlay.style, {
+      /*Object.assign(overlay.style, {
         position: 'fixed',
         top: 0,
         left: 0,
@@ -121,7 +121,7 @@ function injectUnlockCardOverlay() {
         height: '100vh',
         zIndex: 2147483647,
         pointerEvents: 'auto'
-      });
+      }); */
       overlay.innerHTML = html;
       document.body.appendChild(overlay);
 

@@ -5,9 +5,9 @@
     "unlockStyle": "overflow-y: scroll;"
   },
   "x": {
-    "scrollContainer": "html",
-    "lockStyle": "overflow-y: hidden;",
-    "unlockStyle": "overflow-y: scroll;"
+    "scrollContainer": "body",
+    "lockStyle": "overflow: hidden;",
+    "unlockStyle": "overflow: scroll;"
   },
   "instagram": {
     "scrollContainer": "body",
