@@ -43,12 +43,13 @@ body {
   color: #fff;
   border: none;
   border-radius: 8px;
-  padding: 12px 32px;
+  padding: 5px 65px;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
   transition: background 0.2s;
   margin-bottom: 12px;
+  margin-top: 12px;
 }
 .unlock-btn:hover {
   background: #2563eb;
@@ -66,5 +67,65 @@ body {
 .mcq-options label {
   display: block;
   margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+
+select{
+
+    padding: 5px;
+    margin-left: 5px;
+    font-family: inherit;
+    border-radius: 7px;
+    margin-top: 5px;
+
+}
+
+
+
+.mcq-container {
+  max-width: 600px;
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.question {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+
+.submit-btn {
+  margin-top: 16px;
+  padding: 10px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+.option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.option input[type="radio"] {
+  margin-right: 10px;
+  transform: scale(1.2); /* optional: makes radio button larger */
+}
+
+label {
   cursor: pointer;
 }

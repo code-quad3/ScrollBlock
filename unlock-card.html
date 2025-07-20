@@ -1,8 +1,112 @@
-<div class="blurred-bg" id="blurred-bg"></div>
-<div class="unlock-card" id="unlock-card" role="dialog" aria-modal="true" aria-labelledby="unlock-title">
-  <div class="unlock-title" id="unlock-title">Unlock Content</div>
-  <div class="unlock-desc" id="unlock-desc">Please click the button below to unlock and remove the blur effect.</div>
-  <button class="unlock-btn" id="unlockBtn">Unlock</button>
-  <!-- For MCQs, inject additional elements here -->
-  <div id="mcq-container"></div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Unlock Scroll Now - Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="./unlock-card.css" />
+  </head>
+  <body>
+    <div class="blurred-bg" id="blurred-bg">
+      <div
+        class="unlock-card"
+        id="unlock-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="unlock-title"
+      >
+        <div id="Descprition">
+          <div class="unlock-title" id="unlock-title">Unlock Scroll Now</div>
+          <div class="unlock-desc" id="unlock-desc">
+            You will be given 3 multiple-choice questions based on the
+            categories you choose.<br /><br />
+            You must answer at least 2 out of 3 correctly, otherwise you will
+            need to wait 2 minutes to unlock.
+          </div>
+
+          <button class="unlock-btn" id="startQuizBtn">Next</button>
+        </div>
+
+        <div id="categories-container" class="hidden">
+          <label for="categories-select">Choose a category:</label>
+          <select name="" id="options-select">
+            <option value="General Knowledge">General Knowledge</option>
+
+            <option value="Entertaiment: Books">Entertaiment: Books</option>
+
+            <option value="Entertaiment: Board Games">
+              Entertaiment: Board Games
+            </option>
+
+            <option value="Science & Nature">Science & Nature</option>
+
+            <option value="Science & Nature">Science: Computers</option>
+
+            <option value="Science: Mathematics">Science: Mathematics</option>
+
+            <option value="Mythology">Mythology</option>
+            <option value="Sports">Sports</option>
+            <option value="Geography">Geography</option>
+
+            <option value="History">History</option>
+            <option value="Politics">Politics</option>
+            <option value="Art">Art</option>
+            <option value="Animals">Animals</option>
+
+            <option value="Vehicles">Vehicles</option>
+            <option value="Science: Gadgets">Science: Gadgets</option>
+          </select>
+
+          <button class="unlock-btn" id="categoryNextBtn">Next</button>
+        </div>
+
+
+
+      <div class="mcq-container">
+  <form id="mcqForm">
+    <div class="question">
+      1. What is the capital of France?
+    </div>
+    <div class="option">
+      <label>
+        <input type="radio" name="q1" value="a"> A. Berlin
+      </label>
+    </div>
+    <div class="option">
+      <label>
+        <input type="radio" name="q1" value="b"> B. Madrid
+      </label>
+    </div>
+    <div class="option">
+      <label>
+        <input type="radio" name="q1" value="c"> C. Paris
+      </label>
+    </div>
+    <div class="option">
+      <label>
+        <input type="radio" name="q1" value="d"> D. Rome
+      </label>
+    </div>
+
+    <button type="submit" class="submit-btn">Submit</button>
+  </form>
 </div>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+    </div>
+    <!-- Link to external JS file -->
+    <script src="./unlock-card.js" defer></script>
+  </body>
+</html>
