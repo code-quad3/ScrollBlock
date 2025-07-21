@@ -21,28 +21,77 @@ browser.runtime.onMessage.addListener((msg) => {
   }
 });
 
+window.addEventListener("message", (event) => {
+  if (event.source !== window) return;
+  if (event.data.type === "FETCH_TRIVIA") {
+    const categoryId = event.data.categoryId;
+
+    // Forward to background script
+    browser.runtime
+      .sendMessage({
+        type: "FETCH_TRIVIA",
+        categoryId,
+      })
+      .then((response) => {
+        window.postMessage(
+          {
+            type: "TRIVIA_RESPONSE",
+            questions: response.data?.results || [],
+          },
+          "*"
+        );
+      })
+      .catch((err) => {
+        console.error("❌ Fetch error from background:", err);
+      });
+  }
+
+  if (event.data.type === "UNLOCK_SCROLL") {
+    // Perform the scroll unlock action, for example:
+    unlockScroll();
+
+    // remove blur an overlay
+    const blurOverlay = document.getElementById("ext-unlock-overlay");
+    if (blurOverlay) {
+      blurOverlay.remove();
+    }
+
+    const injectedStyle = document.getElementById("ext-unlock-css");
+    if (injectedStyle) {
+      injectedStyle.remove();
+    }
+
+    const injectedScript = document.getElementById("ext-unlock-js");
+    if (injectedScript) {
+      injectedScript.remove();
+    }
+
+    console.log("✅ Scroll unlocked by content script");
+  }
+});
+
 // --- Fire video logic ---
 
 function ensureFire() {
-  let fire = document.getElementById('scrollFire');
+  let fire = document.getElementById("scrollFire");
   if (fire) return fire;
 
-  fire = document.createElement('video');
-  fire.src = browser.runtime.getURL('assets/Fire.webm');
+  fire = document.createElement("video");
+  fire.src = browser.runtime.getURL("assets/Fire.webm");
   fire.autoplay = true;
   fire.loop = true;
   fire.muted = true;
   fire.playsInline = true;
-  fire.id = 'scrollFire';
+  fire.id = "scrollFire";
 
   Object.assign(fire.style, {
-    position: 'fixed',
-    right: '5px',
-    width: '32px',
-    height: '32px',
-    zIndex: '9999',
-    pointerEvents: 'none',
-    objectFit: 'contain'
+    position: "fixed",
+    right: "5px",
+    width: "32px",
+    height: "32px",
+    zIndex: "9999",
+    pointerEvents: "none",
+    objectFit: "contain",
   });
 
   document.body.appendChild(fire);
@@ -50,14 +99,14 @@ function ensureFire() {
 }
 
 function removeFire() {
-  const fire = document.getElementById('scrollFire');
+  const fire = document.getElementById("scrollFire");
   if (fire && fire.parentNode) {
     fire.parentNode.removeChild(fire);
   }
 }
 
 function updateFirePosition() {
-  const fire = document.getElementById('scrollFire');
+  const fire = document.getElementById("scrollFire");
   if (!fire) return;
   const scrollTop = window.scrollY;
   const docHeight = document.documentElement.scrollHeight;
@@ -70,7 +119,7 @@ function updateFirePosition() {
 }
 
 if (!window._fireScrollListenerAdded) {
-  window.addEventListener('scroll', updateFirePosition);
+  window.addEventListener("scroll", updateFirePosition);
   window._fireScrollListenerAdded = true;
 }
 
@@ -106,46 +155,38 @@ function getScrollConfig(callback) {
 
 // --- Unlock Card Overlay Logic (fetch HTML) ---
 function injectUnlockCardOverlay() {
-  if (document.getElementById('ext-unlock-overlay')) return;
+  if (document.getElementById("ext-unlock-overlay")) return;
 
-  fetch(browser.runtime.getURL('unlock-card.html'))
-    .then(res => res.text())
-    .then(html => {
-      const overlay = document.createElement('div');
-      overlay.id = 'ext-unlock-overlay';
-      /*Object.assign(overlay.style, {
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        zIndex: 2147483647,
-        pointerEvents: 'auto'
-      }); */
+  fetch(browser.runtime.getURL("unlock-card.html"))
+    .then((res) => res.text())
+    .then((html) => {
+      const overlay = document.createElement("div");
+      overlay.id = "ext-unlock-overlay";
       overlay.innerHTML = html;
       document.body.appendChild(overlay);
 
       // Inject CSS if not already present
-      if (!document.getElementById('ext-unlock-css')) {
-        const style = document.createElement('link');
-        style.rel = 'stylesheet';
-        style.href = browser.runtime.getURL('unlock-card.css');
-        style.id = 'ext-unlock-css';
+
+      if (!document.getElementById("ext-unlock-css")) {
+        const style = document.createElement("link");
+        style.rel = "stylesheet";
+        style.href = browser.runtime.getURL("unlock-card.css");
+        style.id = "ext-unlock-css";
         document.head.appendChild(style);
       }
 
       // Inject JS if not already present
-      if (!document.getElementById('ext-unlock-js')) {
-        const script = document.createElement('script');
-        script.src = browser.runtime.getURL('unlock-card.js');
-        script.id = 'ext-unlock-js';
+      if (!document.getElementById("ext-unlock-js")) {
+        const script = document.createElement("script");
+        script.src = browser.runtime.getURL("unlock-card.js");
+        script.id = "ext-unlock-js";
         document.body.appendChild(script);
       }
 
       // Fallback unlock button logic in case unlock-card.js is not loaded yet:
-      const unlockBtn = overlay.querySelector('#unlockBtn');
+      const unlockBtn = overlay.querySelector("#unlockBtn");
       if (unlockBtn) {
-        unlockBtn.addEventListener('click', function() {
+        unlockBtn.addEventListener("click", function () {
           overlay.remove();
           unlockScroll(); // Optionally unlock scroll here
         });
@@ -203,7 +244,6 @@ function unlockScroll() {
           "on element:",
           els[0]
         );
-       
       } else {
         console.warn(
           "[unlockScroll] No elements found for tag:",

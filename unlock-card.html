@@ -1,112 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Unlock Scroll Now - Test</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Link to external CSS file -->
-    <link rel="stylesheet" href="./unlock-card.css" />
-  </head>
-  <body>
-    <div class="blurred-bg" id="blurred-bg">
-      <div
-        class="unlock-card"
-        id="unlock-card"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="unlock-title"
-      >
-        <div id="Descprition">
-          <div class="unlock-title" id="unlock-title">Unlock Scroll Now</div>
-          <div class="unlock-desc" id="unlock-desc">
-            You will be given 3 multiple-choice questions based on the
-            categories you choose.<br /><br />
-            You must answer at least 2 out of 3 correctly, otherwise you will
-            need to wait 2 minutes to unlock.
-          </div>
-
-          <button class="unlock-btn" id="startQuizBtn">Next</button>
-        </div>
-
-        <div id="categories-container" class="hidden">
-          <label for="categories-select">Choose a category:</label>
-          <select name="" id="options-select">
-            <option value="General Knowledge">General Knowledge</option>
-
-            <option value="Entertaiment: Books">Entertaiment: Books</option>
-
-            <option value="Entertaiment: Board Games">
-              Entertaiment: Board Games
-            </option>
-
-            <option value="Science & Nature">Science & Nature</option>
-
-            <option value="Science & Nature">Science: Computers</option>
-
-            <option value="Science: Mathematics">Science: Mathematics</option>
-
-            <option value="Mythology">Mythology</option>
-            <option value="Sports">Sports</option>
-            <option value="Geography">Geography</option>
-
-            <option value="History">History</option>
-            <option value="Politics">Politics</option>
-            <option value="Art">Art</option>
-            <option value="Animals">Animals</option>
-
-            <option value="Vehicles">Vehicles</option>
-            <option value="Science: Gadgets">Science: Gadgets</option>
-          </select>
-
-          <button class="unlock-btn" id="categoryNextBtn">Next</button>
-        </div>
-
-
-
-      <div class="mcq-container">
-  <form id="mcqForm">
-    <div class="question">
-      1. What is the capital of France?
-    </div>
-    <div class="option">
-      <label>
-        <input type="radio" name="q1" value="a"> A. Berlin
-      </label>
-    </div>
-    <div class="option">
-      <label>
-        <input type="radio" name="q1" value="b"> B. Madrid
-      </label>
-    </div>
-    <div class="option">
-      <label>
-        <input type="radio" name="q1" value="c"> C. Paris
-      </label>
-    </div>
-    <div class="option">
-      <label>
-        <input type="radio" name="q1" value="d"> D. Rome
-      </label>
-    </div>
-
-    <button type="submit" class="submit-btn">Submit</button>
-  </form>
-</div>
-
-
-
-
-
-
+<div class="blurred-bg" id="blurred-bg">
+  <div
+    class="unlock-card"
+    id="unlock-card"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="unlock-title"
+  >
+    <div id="Descprition">
+      <div class="unlock-title" id="unlock-title">Unlock Scroll Now</div>
+      <div class="unlock-desc" id="unlock-desc">
+        You will be given 3 multiple-choice questions based on the
+        categories you choose.<br /><br />
+        You must answer at least 2 out of 3 correctly, otherwise you will
+        need to wait 2 minutes to unlock.
       </div>
 
-
-
-
-
+      <button class="unlock-btn" id="startQuizBtn">Next</button>
     </div>
-    <!-- Link to external JS file -->
-    <script src="./unlock-card.js" defer></script>
-  </body>
-</html>
+
+    <div id="categories-container" class="hidden">
+      <label for="categories-select">Choose a category:</label>
+      <select name="" id="options-select">
+        <option value="General Knowledge">General Knowledge</option>
+        <option value="Entertainment: Books">Entertainment: Books</option>
+        <option value="Entertainment: Board Games">Entertainment: Board Games</option>
+        <option value="Science & Nature">Science & Nature</option>
+        <option value="Science: Computers">Science: Computers</option>
+        <option value="Science: Mathematics">Science: Mathematics</option>
+        <option value="Mythology">Mythology</option>
+        <option value="Sports">Sports</option>
+        <option value="Geography">Geography</option>
+        <option value="History">History</option>
+        <option value="Politics">Politics</option>
+        <option value="Art">Art</option>
+        <option value="Animals">Animals</option>
+        <option value="Vehicles">Vehicles</option>
+        <option value="Science: Gadgets">Science: Gadgets</option>
+      </select>
+
+      <button class="unlock-btn" id="categoryNextBtn">Next</button>
+    </div>
+
+    <div class="mcq-container hidden" id="mcqForm">
+      <form>
+        <div class="question" id="questionText">Loading question...</div>
+
+        <div class="option">
+          <label>
+            <input type="radio" name="answer" id="optA" value="" />
+            <span id="labelA"></span>
+          </label>
+        </div>
+        <div class="option">
+          <label>
+            <input type="radio" name="answer" id="optB" value="" />
+            <span id="labelB"></span>
+          </label>
+        </div>
+        <div class="option">
+          <label>
+            <input type="radio" name="answer" id="optC" value="" />
+            <span id="labelC"></span>
+          </label>
+        </div>
+        <div class="option">
+          <label>
+            <input type="radio" name="answer" id="optD" value="" />
+            <span id="labelD"></span>
+          </label>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+        <div id="feedback" style="margin-top: 10px; font-weight: bold"></div>
+      </form>
+    </div>
+
+    <div id="postQuizTimer" style="display: none">
+      <p>⏳ You have <span id="timer">2:00</span> to wait</p>
+    </div>
+  </div>
+</div>

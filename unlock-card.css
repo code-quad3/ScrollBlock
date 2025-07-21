@@ -43,7 +43,7 @@ body {
   color: #fff;
   border: none;
   border-radius: 8px;
-  padding: 5px 65px;
+  padding: 0px 65px;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
@@ -103,7 +103,7 @@ select{
 
 .submit-btn {
   margin-top: 16px;
-  padding: 10px 16px;
+  padding: 0px 16px;
   background-color: #007bff;
   color: white;
   border: none;
@@ -128,4 +128,11 @@ select{
 
 label {
   cursor: pointer;
+}
+
+
+#timer {
+  font-weight: bold;
+  color: #cc0000;
+  font-size: 1.2rem;
 }
