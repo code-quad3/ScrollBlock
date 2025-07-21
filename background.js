@@ -11,3 +11,20 @@ browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     return true; // Indicates async response
   }
 });
+
+browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === "FETCH_TRIVIA") {
+    const url = `https://opentdb.com/api.php?amount=3&category=${message.categoryId}&&type=multiple`;
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        sendResponse({ success: true, data });
+      })
+      .catch((err) => {
+        sendResponse({ success: false, error: err.message });
+      });
+
+    return true; // Required to use async sendResponse
+  }
+});
