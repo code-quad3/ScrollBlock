@@ -153,20 +153,25 @@ function getScrollConfig(callback) {
     });
 }
 
-// --- Unlock Card Overlay Logic (fetch HTML) ---
 function injectUnlockCardOverlay() {
   if (document.getElementById("ext-unlock-overlay")) return;
 
   fetch(browser.runtime.getURL("unlock-card.html"))
     .then((res) => res.text())
     .then((html) => {
+      // --- Create overlay container ---
       const overlay = document.createElement("div");
       overlay.id = "ext-unlock-overlay";
-      overlay.innerHTML = html;
+
+      // ✅ Safely parse and append HTML fragment instead of innerHTML
+      const range = document.createRange();
+      range.selectNode(document.body);
+      const fragment = range.createContextualFragment(html);
+      overlay.appendChild(fragment);
+
       document.body.appendChild(overlay);
 
-      // Inject CSS if not already present
-
+      // --- Inject CSS if not already present ---
       if (!document.getElementById("ext-unlock-css")) {
         const style = document.createElement("link");
         style.rel = "stylesheet";
@@ -175,7 +180,7 @@ function injectUnlockCardOverlay() {
         document.head.appendChild(style);
       }
 
-      // Inject JS if not already present
+      // --- Inject JS if not already present ---
       if (!document.getElementById("ext-unlock-js")) {
         const script = document.createElement("script");
         script.src = browser.runtime.getURL("unlock-card.js");
@@ -183,16 +188,17 @@ function injectUnlockCardOverlay() {
         document.body.appendChild(script);
       }
 
-      // Fallback unlock button logic in case unlock-card.js is not loaded yet:
+      // --- Fallback unlock button logic ---
       const unlockBtn = overlay.querySelector("#unlockBtn");
       if (unlockBtn) {
         unlockBtn.addEventListener("click", function () {
           overlay.remove();
-          unlockScroll(); // Optionally unlock scroll here
+          unlockScroll(); // Optional: remove scroll lock
         });
       }
     });
 }
+
 
 // Modify lockScroll to show unlock card after fire
 function lockScroll() {

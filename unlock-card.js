@@ -23,10 +23,11 @@
   const totalTime = 120; // in seconds
   // Decode HTML entities
   function decodeHTML(str) {
-    const txt = document.createElement("textarea");
-    txt.innerHTML = str;
-    return txt.value;
-  }
+  const range = document.createRange();
+  const fragment = range.createContextualFragment(str);
+  return fragment.textContent || "";
+}
+
 
   // Load a single question
   function loadQuestion() {
@@ -148,10 +149,25 @@
       Score++;
     }
 
-    feedback.innerHTML = `
-    Correct answer: <strong>${correctAnswer}</strong><br>
-    ${isCorrect ? "✅ Correct!" : "❌ Incorrect!"}
-  `;
+    feedback.textContent = ""; // Clear previous content safely
+
+const label = document.createElement("span");
+label.textContent = "Correct answer: ";
+
+const answer = document.createElement("strong");
+answer.textContent = correctAnswer;
+
+const lineBreak = document.createElement("br");
+
+const result = document.createElement("span");
+result.textContent = isCorrect ? "✅ Correct!" : "❌ Incorrect!";
+
+// Append all safely
+feedback.appendChild(label);
+feedback.appendChild(answer);
+feedback.appendChild(lineBreak);
+feedback.appendChild(result);
+
 
     // Delay loading the next question so user can see feedback
     setTimeout(() => {
