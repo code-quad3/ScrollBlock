@@ -3,17 +3,18 @@
   "name": "ScrollBlocker",
   "version": "1.0",
   "description": "Stops scrolling after a time limit. Solve riddles to unlock or wait.",
-  "permissions": ["activeTab", "tabs", "storage"],
+  "permissions": ["activeTab", "tabs"],
   "background": {
     "scripts": ["background.js"]
   },
   "browser_action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "icons/icon16.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
-    }
+       "16": "assets/logo16.svg",
+      "32": "assets/logo32.svg",
+      "64":  "assets/logo64.svg"
+    },
+    "default_title" :"Break the loop."
   },
   "content_scripts": [
     {
